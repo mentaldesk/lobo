@@ -8,6 +8,8 @@
 #define NAV  3
 #define FUNC 4
 #define NUM  5
+#define WIN  6
+#define MEDIA 7
 
 / {
     chosen {
@@ -128,10 +130,10 @@
 //             |OSFT |SPC|NAV/ESC|     |BSPC |SPC/FN|OSFT |
             display-name = "Base";
             bindings = <
-   &kp Q       &kp W        &kp F        &lt NUM P    &kp B            &kp J        &kp L        &kp U        &kp Y        &kp SQT
+   &kp Q       &lt WIN W    &kp F        &lt NUM P    &kp B            &kp J        &kp L        &kp U        &lt MEDIA Y  &kp SQT
    &kp A       &kp R        &kp S        &kp T        &kp G            &kp M        &kp N        &kp E        &kp I        &kp O
    &bml LSHFT X &bml LCTRL C &bml LALT D &bml LGUI V  &kp Z            &kp K        &bmr RGUI H  &bmr RALT COMMA &bmr RCTRL DOT &bmr RSHFT SLASH
-                            &sk LSHFT  &lt BRAC SPACE &lt NAV ESC      &lt FUNC BSPC &lt SYM SPACE &sk RSHFT
+                            &sk LSHFT  &lt BRAC SPACE &lt NAV ESC      &lt FUNC BSPC &lt SYM SPACE &kp SQT
             >;
         };
 
@@ -207,6 +209,36 @@
    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4    &kp PLUS     &kp N4       &kp N5       &kp N6       &kp ASTRK
    &bt BT_CLR  &kp LSHFT    &kp LCTRL    &kp LALT     &kp LGUI         &kp COLON    &kp N1       &kp N2       &kp N3       &kp DOT
                             &trans       &trans       &trans           &kp BSPC     &kp N0       &kp EQUAL
+            >;
+        };
+
+        window_layer {
+// -----------------------------------------------------------------------------------------
+// |     |     |     |     |     |     |     |MVLFT|ENTER|MVRGT|     |
+// |     |     |     |     |     |     |     | LFT | DOWN| RGT |     |
+// |     |     |     |     |     |     |     |MSSUP| LOCK|     |     |
+//             |     |     |     |     |     |     |
+            display-name = "Window";
+            bindings = <
+   &trans      &trans       &trans       &trans       &trans           &trans       &kp LA(LG(LC(LS(LEFT)))) &kp LA(LC(ENTER)) &kp LA(LG(LC(LS(RIGHT)))) &trans
+   &trans      &trans       &trans       &trans       &trans           &trans       &kp LA(LG(LC(LEFT))) &kp LA(LG(LC(DOWN))) &kp LA(LG(LC(RIGHT))) &trans
+   &trans      &trans       &trans       &trans       &trans           &trans       &kp LC(UP)   &kp LG(LC(D)) &trans       &trans
+                            &trans       &trans       &trans           &trans       &trans       &trans
+            >;
+        };
+
+        media_layer {
+// -----------------------------------------------------------------------------------------
+// |     |FORCE|     |SCRN |VIDSN|     |     |     |     |     |     |
+// |     |     | VOL-| MUTE| VOL+|     |     |     |     |     |     |
+// |     |     | CALC|     |     |     |     |     |     |     |     |
+//             |     |     |     |     |     |     |
+            display-name = "Media";
+            bindings = <
+   &trans      &kp LA(LG(ESC)) &trans    &kp LG(LS(N4)) &kp LG(LC(LS(N4)))    &trans       &trans       &trans       &trans       &trans
+   &trans      &trans       &kp C_VOL_DN &kp C_MUTE   &kp C_VOL_UP          &trans       &trans       &trans       &trans       &trans
+   &trans      &trans       &kp C_AL_CALC &trans      &trans                &trans       &trans       &trans       &trans       &trans
+                            &trans       &trans       &trans                &trans       &trans       &trans
             >;
         };
     };
