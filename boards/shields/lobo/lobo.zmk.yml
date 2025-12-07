@@ -1,0 +1,15 @@
+file_format: "1"
+id: lobo
+name: Lobo
+type: shield
+url: https://github.com/mentaldesk/lobo
+requires: [pro_micro]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+  - underglow
+  - studio
+siblings:
+  - lobo_left
+  - lobo_right
