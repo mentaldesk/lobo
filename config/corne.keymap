@@ -121,22 +121,6 @@
             layers = <BASE>;
         };
         
-        // W+F = OSM(LSHFT)
-        combo_lshift {
-            timeout-ms = <50>;
-            key-positions = <1 2>;
-            bindings = <&skq LSHFT>;
-            layers = <BASE>;
-        };
-        
-        // Y+U = OSM(RSHFT)
-        combo_rshift {
-            timeout-ms = <50>;
-            key-positions = <7 8>;
-            bindings = <&skq RSHFT>;
-            layers = <BASE>;
-        };
-        
         // T+G = OSM(Brackets)
         combo_brac {
             timeout-ms = <50>;
