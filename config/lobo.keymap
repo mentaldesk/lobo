@@ -112,6 +112,16 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&skq>;
         };
+
+        // Layer-tap with quick-tap for DEL and BSPC
+        lt_qt: layer_tap_quick_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <125>;
+            flavor = "balanced";
+            bindings = <&mo>, <&kp>;
+        };
     };
 
     combos {
@@ -196,7 +206,7 @@
    &kp Q       &lt WIN W    &kp F        &lt NUM P    &lt BT B         &kp J        &kp L        &lt SWITCH U        &lt MEDIA Y  &kp SQT
    &kp A       &kp R        &kp S        &kp T        &kp G            &kp M        &kp N        &kp E        &kp I        &kp O
    &bml_shft LSHFT X &bml LCTRL C &bml LALT D &bml_no_qt LGUI V  &kp Z            &kp K        &bmr_no_qt RGUI H  &bmr_no_qt RALT COMMA &bmr RCTRL DOT &bmr_shft RSHFT SLASH
-                            &osm_meh LC(LA(LSHFT)) LSHFT  &lt BRAC SPACE &lt NAV DEL      &lt FUNC BSPC &lt SYM SPACE &osm_meh LC(LA(LSHFT)) RSHFT
+                            &osm_meh LC(LA(LSHFT)) LSHFT  &lt BRAC SPACE &lt_qt NAV DEL      &lt_qt FUNC BSPC &lt SYM SPACE &osm_meh LC(LA(LSHFT)) RSHFT
             >;
         };
 
