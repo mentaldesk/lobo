@@ -8,7 +8,7 @@
 
 #include "5column.dtsi"
 
-&lobo_5col_layout {
+&paw_5col_layout {
     transform = <&default_transform>;
 };
 
@@ -16,7 +16,7 @@
     chosen {
         zephyr,display = &oled;
         zmk,kscan = &kscan0;
-        zmk,physical-layout = &lobo_5col_layout;
+        zmk,physical-layout = &paw_5col_layout;
     };
 
     default_transform: keymap_transform_1 {
