@@ -1,15 +1,14 @@
 file_format: "1"
-id: lobo
-name: Lobo
+id: paw
+name: Paw
 type: shield
-url: https://github.com/mentaldesk/lobo
+url: https://github.com/mentaldesk/paw
 requires: [pro_micro]
 exposes: [i2c_oled]
 features:
   - keys
   - display
-  - underglow
-  - studio
+  - pointer
 siblings:
-  - lobo_left
-  - lobo_right
+  - paw_left
+  - paw_right
