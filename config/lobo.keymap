@@ -2,16 +2,17 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-#define BASE 0
-#define SYM  1
-#define BRAC 2
-#define NAV  3
-#define FUNC 4
-#define NUM  5
-#define WIN  6
-#define MEDIA 7
-#define BT 8
-#define SWITCH 9
+#define BASE    0
+#define MIRROR  1
+#define SYM     2
+#define BRAC    3
+#define NAV     4
+#define FUNC    5
+#define NUM     6
+#define WIN     7
+#define MEDIA   8
+#define BT      9
+#define SWITCH  10
 
 / {
     chosen {
@@ -230,17 +231,25 @@
             bindings = <&kp CAPS>;
             layers = <BASE>;
         };
+
+        // T+V = OSM(Mirror)
+        combo_mirror {
+            timeout-ms = <50>;
+            key-positions = <13 23>;
+            bindings = <&sl MIRROR>;
+            layers = <BASE>;
+        };
 };
 
     keymap {
         compatible = "zmk,keymap";
 
-        base_layer {
 // -----------------------------------------------------------------------------------------
 // |  Q  |  W  |  F  |  P  |  B  |     |  J  |  L   |  U   |  Y   |  '  |
 // |  A  |  R  |  S  |  T  |  G  |     |  M  |  N   |  E   |  I   |  O  | 
 // |  X  |  C  |  D  |  V  |  Z  |     |  K  |  H   |  ,   |  .   |  /  |
 //             |OSFT |SPC|NAV/DEL|     |BSPC |SPC/FN|OSFT |
+        base_layer {
             display-name = "Base";
             bindings = <
    &kp Q       &lt WIN W    &kp F        &lt NUM P    &lt BT B         &kp J        &kp L        &lt SWITCH U        &lt MEDIA Y  &kp SQT
@@ -250,12 +259,24 @@
             >;
         };
 
-        symbol_layer {
+// -----------------------------------------------------------------------------------------
+// Mirrors the Base layer by swapping left/right halves.
+        mirror_layer {
+            display-name = "Mirror";
+            bindings = <
+       &kp J        &kp L        &lt SWITCH U  &lt MEDIA Y  &kp SQT          &kp Q        &lt WIN W    &kp F        &lt NUM P    &lt BT B
+       &kp M        &kp N        &kp E        &kp I        &kp O            &kp A        &kp R        &kp S        &kp T        &kp G
+       &kp K        &bmr_no_qt RGUI H  &bmr_no_qt RALT COMMA &bmr RCTRL DOT &bmr_shft RSHFT SLASH  &bml_shft LSHFT X &bml LCTRL C &bml LALT D &bml_no_qt LGUI V  &kp Z
+                    &lt_qt FUNC BSPC &lt SYM SPACE &osm_meh LC(LA(LSHFT)) RSHFT  &osm_meh LC(LA(LSHFT)) LSHFT  &lt BRAC SPACE &lt_qt NAV DEL
+            >;
+        };
+
 // -----------------------------------------------------------------------------------------
 // | RST |  _  |  *  |  ~  |     |     |     |     |     |     |     |
 // |  !  |  -  |  +  |  =  |  ^  |     |     |     |     |     |     |
 // |  \  |  |  |  &  |  %  |     |     |     |     |     |     |     |
 //             |     |     |     |     |     |     |
+        symbol_layer {
             display-name = "Symbol";
             bindings = <
    &to BASE    &kp UNDER    &kp ASTRK    &kp TILDE    &trans           &trans       &trans       &trans       &trans       &trans
@@ -269,23 +290,23 @@
 // -----------------------------------------------------------------------------------------
 // | RST |     |     |     |     |     |     |  {  |  }  |  $  |     |
 // |     |     |     |     |     |     |  #  |  (  |  )  |  :  |  @  |
-// |     |     |     |     |     |     |     |  [  |  ]  |  ;  |  \  |
+// |     |     |     |     |     |     |     |  [  |  ]  |  ;  |     |
 //             |     |     |     |     |     |     |
             display-name = "Bracket";
             bindings = <
    &to BASE    &trans       &trans       &trans       &trans           &trans       &kp LBRC     &kp RBRC     &kp DLLR     &trans
    &trans      &trans       &trans       &trans       &trans           &kp HASH     &kp LPAR     &kp RPAR     &kp COLON    &kp AT
-   &trans      &trans       &trans       &trans       &trans           &trans       &kp LBKT     &kp RBKT     &kp SEMI     &kp BSLH
+   &trans      &trans       &trans       &trans       &trans           &trans       &kp LBKT     &kp RBKT     &kp SEMI     &trans
                             &trans       &trans       &trans           &trans       &trans       &trans
             >;
         };
 
-        nav_layer {
 // -----------------------------------------------------------------------------------------
 // | RST |     |     |     |     |     | HOME| WBCK|  UP | WFWD| END |
 // | CUT | CPY | PST | UND |     |     | TOP | LEFT| DOWN|RIGHT| PGUP|
 // |LSHFT|LCTRL|LALT | LGUI|     |     | BTM | HOME|     | END | PGDN|
 //             |     |     |     |     |     | TAB |
+        nav_layer {
             display-name = "Nav";
             bindings = <
    &to BASE    &trans       &trans       &trans       &trans           &kp HOME     &kp LA(LEFT) &kp UP       &kp LA(RIGHT) &kp END
@@ -295,12 +316,12 @@
             >;
         };
 
-        function_layer {
 // -----------------------------------------------------------------------------------------
 // | RST | F1  | F2  | F3  |     |     |     |LOCK |     |     | BOOT|
 // |     | F4  | F5  | F6  | F7  | F8  |     |     |     |     |     |
 // |     | F9  | F10 | F11 | F12 |     |     |RGUI |RALT |RCTRL|RSHFT|
 //             |     |     |     |     |     |     |
+        function_layer {
             display-name = "Function";
             bindings = <
    &to BASE    &kp F1       &kp F2       &kp F3       &trans           &trans       &kp LG(LC(Q)) &trans      &trans       &bootloader
@@ -310,12 +331,12 @@
             >;
         };
 
-        number_layer {
 // -----------------------------------------------------------------------------------------
 // | RST |     |     |     |     |     |  -  |  7  |  8  |  9  |  /  |
 // |     |     |     |     |     |     |  +  |  4  |  5  |  6  |  *  |
 // |LSHFT|LCTRL|LALT | LGUI|     |     |  :  |  1  |  2  |  3  |  .  |
 //             |     |     |     |     |BSPC |  0  |
+        number_layer {
             display-name = "Number";
             bindings = <
    &to BASE    &trans       &trans       &trans       &trans           &kp MINUS    &kp N7       &kp N8       &kp N9       &kp SLASH
@@ -325,12 +346,12 @@
             >;
         };
 
-        window_layer {
 // -----------------------------------------------------------------------------------------
 // |     |     |     |     |     |     |     |MVLFT|ENTER|MVRGT|     |
 // |     |     |     |     |     |     |     | LFT | DOWN| RGT |     |
 // |     |     |     |     |     |     |     |MSSUP| LOCK|     |     |
 //             |     |     |     |     |     |     |
+        window_layer {
             display-name = "Window";
             bindings = <
    &trans      &trans       &trans       &trans       &trans           &trans       &kp LA(LG(LC(LS(LEFT)))) &kp LA(LC(ENTER)) &kp LA(LG(LC(LS(RIGHT)))) &trans
@@ -340,12 +361,12 @@
             >;
         };
 
-        media_layer {
 // -----------------------------------------------------------------------------------------
 // |FORCE|    |SCRNF |SCRNC|     |     |     |     |     |     |     |
 // |     | VOL-| MUTE| VOL+|     |     |     |     |     |     |     |
 // |     | CALC|     |     |     |     |     |     |     |     |     |
 //             |     |     |     |     |     |     |
+        media_layer {
             display-name = "Media";
             bindings = <
    &kp LA(LG(ESC)) &trans    &kp LG(LS(N4)) &kp LG(LC(LS(N4)))  &trans       &trans       &trans       &trans       &trans       &trans
@@ -355,12 +376,12 @@
             >;
         };
 
-        bluetooth_layer {
 // -----------------------------------------------------------------------------------------
 // |     |     |     |     |     |     |     |     |     |     |     |
 // |     |     |     |     |     |     |     |     |     |     |     |
 // |     |     |     |     |     |     |     | BT0 | BT1 | BT2 |     |
 //             |     |     |     |     |BTCLR|     |     |
+        bluetooth_layer {
             display-name = "Bluetooth";
             bindings = <
    &trans      &trans       &trans       &trans       &trans           &trans       &trans       &trans       &trans       &trans
@@ -370,12 +391,12 @@
             >;
         };
 
-        switch_layer {
 // -----------------------------------------------------------------------------------------
 // |BASE |     |     | NUM |     |     |     |     |     |     |     |
 // |     |     |     |     |     |     |     |     |     |     |     |
 // |     |     |     |     |     |     |     |     |     |     |     |
 //             |     |     | NAV |     | FUNC|     |     |
+        switch_layer {
             display-name = "Switch";
             bindings = <
    &to BASE    &trans       &trans       &to NUM      &trans           &trans       &trans       &trans       &trans       &trans
