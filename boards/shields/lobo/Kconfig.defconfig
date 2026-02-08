@@ -21,14 +21,6 @@ config I2C
 config SSD1306
     default y
 
-config CONFIG_ZMK_WIDGET_OUTPUT_STATUS
-    bool "Enable a widget to show the current output (USB/BLE)"
-    default n
-
-config CONFIG_ZMK_WIDGET_BATTERY_STATUS
-    bool "Enable a widget to show battery charge information"
-    default n    
-
 endif # ZMK_DISPLAY
 
 if LVGL
