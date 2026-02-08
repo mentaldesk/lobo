@@ -21,6 +21,12 @@ config I2C
 config SSD1306
     default y
 
+config CONFIG_ZMK_WIDGET_OUTPUT_STATUS
+    default n
+
+config CONFIG_ZMK_WIDGET_BATTERY_STATUS
+    default n    
+
 endif # ZMK_DISPLAY
 
 if LVGL
