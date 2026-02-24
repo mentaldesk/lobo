@@ -83,6 +83,48 @@
             bindings = <&kp LC(END)>, <&kp LG(DOWN)>, <&kp LC(END)>;
         };
 
+        ok_win_lh: os_key_win_left_half {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LG(LEFT)>, <&kp LS(LA(LG(LC(LEFT))))>, <&kp ESC>;
+        };
+
+        ok_win_rh: os_key_win_right_half {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LG(RIGHT)>, <&kp LS(LA(LG(LC(RIGHT))))>, <&kp ESC>;
+        };
+
+        ok_win_max: os_key_win_maximize {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LG(UP)>, <&kp LA(LC(ENTER))>, <&kp ESC>;
+        };
+
+        ok_win_next_scr: os_key_win_next_screen {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LS(LG(LEFT))>, <&kp LA(LC(LG(DOWN)))>, <&kp ESC>;
+        };
+
+        ok_mission_ctrl: os_key_mission_control {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LG(TAB)>, <&kp LC(UP)>, <&kp ESC>;
+        };
+
+        ok_desktop: os_key_desktop {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            /*            Win           Mac           Lin  */
+            bindings = <&kp LG(D)>, <&kp LG(LC(D))>, <&kp ESC>;
+        };
+
         // Custom sticky key with quick release
         skq: sticky_key_quick_release {
             compatible = "zmk,behavior-sticky-key";
@@ -418,16 +460,16 @@
         };
 
 // -----------------------------------------------------------------------------------------
-// |     |     |     |     |     |     |     |MVLFT|ENTER|MVRGT|     |
-// |     |     |     |     |     |     |     | LFT | DOWN| RGT |     |
-// |     |     |     |     |     |     |     |MSSUP| LOCK|     |     |
-//             |     |     |     |     |     |     |
+// |     |     |     |     |     |     |     | LHalf    | MAX        |  RHalf  |     |
+// |     |     |     |     |     |     |     |  LFT     | NextScreen |   RGT   |     |
+// |     |     |     |     |     |     |     | MissCtrl | Desktop    |         |     |
+//             |     |     |     |     |     |          |
         window_layer {
             display-name = "Window";
             bindings = <
-   &trans      &trans       &trans       &trans       &trans           &trans       &kp LA(LG(LC(LS(LEFT)))) &kp LA(LC(ENTER)) &kp LA(LG(LC(LS(RIGHT)))) &trans
-   &trans      &trans       &trans       &trans       &trans           &trans       &kp LA(LG(LC(LEFT))) &kp LA(LG(LC(DOWN))) &kp LA(LG(LC(RIGHT))) &trans
-   &trans      &trans       &trans       &trans       &trans           &trans       &kp LC(UP)   &kp LG(LC(D)) &trans       &trans
+   &trans      &trans       &trans       &trans       &trans           &trans       &ok_win_lh           &ok_win_max      &ok_win_rh &trans
+   &trans      &trans       &trans       &trans       &trans           &trans       &kp LA(LG(LC(LEFT))) &ok_win_next_scr &kp LA(LG(LC(RIGHT))) &trans
+   &trans      &trans       &trans       &trans       &trans           &trans       &ok_mission_ctrl     &ok_desktop      &trans                &trans
                             &trans       &trans       &trans           &trans       &trans       &trans
             >;
         };
