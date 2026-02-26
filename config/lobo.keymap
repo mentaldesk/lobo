@@ -2,6 +2,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/oskey.h>
+#include <behaviors/oskey.dtsi>
 
 #define BASE    0
 #define MIRROR  1
@@ -41,48 +42,6 @@
             #binding-cells = <1>;
         };
 
-        ok_prev_word: os_key_prev_word {
-            compatible = "zmk,behavior-os-key";
-            #binding-cells = <0>;
-            /*                 Win        Mac         Lin  */
-            bindings = <&kp LC(LEFT)>, <&kp LA(LEFT)>, <&kp LA(LEFT)>;
-        };
-
-        ok_next_word: os_key_next_word {
-            compatible = "zmk,behavior-os-key";
-            #binding-cells = <0>;
-            /*                 Win        Mac         Lin  */
-            bindings = <&kp LC(RIGHT)>, <&kp LA(RIGHT)>, <&kp LA(RIGHT)>;
-        };
-
-        ok_line_start: os_key_line_start {
-            compatible = "zmk,behavior-os-key";
-            #binding-cells = <0>;
-            /*             Win         Mac            Lin  */
-            bindings = <&kp HOME>, <&kp LG(LEFT)>, <&kp HOME>;
-        };
-
-        ok_line_end: os_key_line_end {
-            compatible = "zmk,behavior-os-key";
-            #binding-cells = <0>;
-            /*            Win           Mac           Lin  */
-            bindings = <&kp END>, <&kp LG(RIGHT)>, <&kp END>;
-        };
-
-        ok_doc_start: os_key_doc_start {
-            compatible = "zmk,behavior-os-key";
-            #binding-cells = <0>;
-            /*             Win         Mac            Lin  */
-            bindings = <&kp LC(HOME)>, <&kp LG(UP)>, <&kp LC(HOME)>;
-        };
-
-        ok_doc_end: os_key_doc_end {
-            compatible = "zmk,behavior-os-key";
-            #binding-cells = <0>;
-            /*            Win           Mac           Lin  */
-            bindings = <&kp LC(END)>, <&kp LG(DOWN)>, <&kp LC(END)>;
-        };
-
         ok_win_lh: os_key_win_left_half {
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
@@ -109,20 +68,6 @@
             #binding-cells = <0>;
             /*            Win           Mac           Lin  */
             bindings = <&kp LS(LG(LEFT))>, <&kp LA(LC(LG(DOWN)))>, <&kp ESC>;
-        };
-
-        ok_mission_ctrl: os_key_mission_control {
-            compatible = "zmk,behavior-os-key";
-            #binding-cells = <0>;
-            /*            Win           Mac           Lin  */
-            bindings = <&kp LG(TAB)>, <&kp LC(UP)>, <&kp ESC>;
-        };
-
-        ok_desktop: os_key_desktop {
-            compatible = "zmk,behavior-os-key";
-            #binding-cells = <0>;
-            /*            Win           Mac           Lin  */
-            bindings = <&kp LG(D)>, <&kp LG(LC(D))>, <&kp ESC>;
         };
 
         // Custom sticky key with quick release
@@ -437,9 +382,9 @@
         function_layer {
             display-name = "Function";
             bindings = <
-   &kp F1      &kp F2       &kp F3       &kp F4       &trans           &trans       &kp LG(LC(Q)) &trans      &trans       &bootloader
-   &kp F5      &kp F6       &kp F7       &kp F8       &trans           &trans       &trans        &trans      &trans       &trans
-   &kp F9      &kp F10      &kp F11      &kp F12      &trans           &trans       &kp RGUI     &kp RALT     &kp RCTRL    &kp RSHFT
+   &kp F1      &kp F2       &kp F3       &kp F4       &trans           &trans       &ok_lock     &trans      &trans       &bootloader
+   &kp F5      &kp F6       &kp F7       &kp F8       &trans           &trans       &trans       &trans      &trans       &trans
+   &kp F9      &kp F10      &kp F11      &kp F12      &trans           &trans       &kp RGUI     &kp RALT    &kp RCTRL    &kp RSHFT
                             &trans       &trans       &trans           &trans       &trans       &trans
             >;
         };

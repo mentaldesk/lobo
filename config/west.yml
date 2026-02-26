@@ -14,6 +14,6 @@ manifest:
       import: app/west.yml
     - name: oskey
       remote: mentaldesk
-      revision: main
+      revision: default-behaviours
   self:
     path: config
