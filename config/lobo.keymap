@@ -418,7 +418,7 @@
         window_layer {
             display-name = "Window";
             bindings = <
-   &trans      &trans       &trans       &trans       &trans           &trans       &ok_tile_left        &ok_maximize     &ok_tile_right        &trans
+   &trans      &trans       &trans       &trans       &trans           &trans       &ok_win_lh           &ok_win_max      &ok_win_rh            &trans
    &trans      &trans       &trans       &trans       &trans           &trans       &kp LA(LG(LC(LEFT))) &ok_win_next_scr &kp LA(LG(LC(RIGHT))) &trans
    &trans      &trans       &trans       &trans       &trans           &trans       &ok_mission_ctrl     &ok_desktop      &trans                &trans
                             &trans       &trans       &trans           &trans       &trans       &trans
